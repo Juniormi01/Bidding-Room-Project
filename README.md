@@ -31,4 +31,36 @@ To start a Tic-Tac-Toe game, decide which player will host the game and which wi
 
 The hosting player runs:
 ```bash
+python Main2.py
+
+
+This initializes the server on localhost and binds it to port 9999 by default. Once the client connects, the game will begin.
+
+2. Connect to a Game
+The joining player should run:
+
+bash
+Copy code
 python tic_tac_toe.py
+Update the connect_to_game method to match the host's IP and port if they are not localhost:9999.
+
+Game Controls
+Hosting Player starts with the symbol X.
+Joining Player uses the symbol 0.
+To make a move, enter the desired row and column (e.g., 1,2).
+The game alternates turns, checking for a winner or tie after each move.
+Example Playthrough
+Host runs the script and waits for a client connection.
+Client connects to the host.
+Players take turns making moves by entering row,column coordinates.
+Game results are displayed as soon as there's a winner or tie.
+Code Structure
+The TicTacToe class handles the game logic and networking. Key methods include:
+
+host_game(): Hosts a new game and waits for a client.
+connect_to_game(): Connects to an existing hosted game.
+handle_connection(): Manages moves and game flow between the players.
+apply_move(): Validates and applies a move to the board.
+check_valid_move(): Checks if a selected cell is available.
+check_if_won(): Checks if a player has won the game.
+print_board(): Displays the current board state.
