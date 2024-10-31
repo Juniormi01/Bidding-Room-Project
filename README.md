@@ -30,18 +30,15 @@ To start a Tic-Tac-Toe game, decide which player will host the game and which wi
 #### 1. Host the Game
 
 The hosting player runs:
-```bash
-python Main2.py
+python Main.py
 
 
 This initializes the server on localhost and binds it to port 9999 by default. Once the client connects, the game will begin.
 
-2. Connect to a Game
+### 2. Connect to a Game
 The joining player should run:
 
-bash
-Copy code
-python tic_tac_toe.py
+python Main2.py
 Update the connect_to_game method to match the host's IP and port if they are not localhost:9999.
 
 Game Controls
