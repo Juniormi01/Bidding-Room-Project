@@ -46,6 +46,7 @@ Hosting Player starts with the symbol X.
 Joining Player uses the symbol 0.
 To make a move, enter the desired row and column (e.g., 1,2).
 The game alternates turns, checking for a winner or tie after each move.
+
 Example Playthrough
 Host runs the script and waits for a client connection.
 Client connects to the host.
@@ -54,10 +55,10 @@ Game results are displayed as soon as there's a winner or tie.
 Code Structure
 The TicTacToe class handles the game logic and networking. Key methods include:
 
-host_game(): Hosts a new game and waits for a client.
-connect_to_game(): Connects to an existing hosted game.
-handle_connection(): Manages moves and game flow between the players.
-apply_move(): Validates and applies a move to the board.
-check_valid_move(): Checks if a selected cell is available.
-check_if_won(): Checks if a player has won the game.
-print_board(): Displays the current board state.
+- host_game(): Hosts a new game and waits for a client.
+- connect_to_game(): Connects to an existing hosted game.
+- handle_connection(): Manages moves and game flow between the players.
+- apply_move(): Validates and applies a move to the board.
+- check_valid_move(): Checks if a selected cell is available.
+- check_if_won(): Checks if a player has won the game.
+- print_board(): Displays the current board state.
