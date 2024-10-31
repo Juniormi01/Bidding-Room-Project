@@ -1,20 +1,21 @@
 
-# Multiplayer Tic-Tac-Toe Game
+# Multiplayer Tic-Tac-Toe Game with GUI
 
-This project implements a simple multiplayer Tic-Tac-Toe game using Python sockets. Players can host a game or join an existing game to compete against each other on a 3x3 board. The game follows the classic Tic-Tac-Toe rules, where players take turns marking cells on the board, aiming to align three symbols horizontally, vertically, or diagonally.
+This project is a multiplayer Tic-Tac-Toe game built with Python. It uses sockets for network communication and Tkinter for a graphical user interface (GUI), making it easy and fun to play in real-time with a friend.
 
 ## Features
 
-- Multiplayer support through TCP sockets
-- Simple text-based board display
-- Valid move checking and player turn management
-- Game result detection (win, lose, or tie)
-- Threaded connection handling to separate game flow from network communication
+- **Multiplayer Support**: Play against a friend over a local network using TCP sockets.
+- **Graphical Interface**: Uses Tkinter to provide a user-friendly interface with styled buttons and visual cues.
+- **Styled Design**: Light and active colors make the game visually engaging and improve gameplay experience.
+- **Game Status Notifications**: Alerts players when there’s a win, loss, or tie.
+
 
 ## Requirements
 
 - Python 3.x
 - Basic understanding of sockets and threading in Python
+- Tkinter (comes pre-installed with most Python distributions)
 
 ## Getting Started
 
@@ -41,24 +42,32 @@ The joining player should run:
 python Main2.py
 Update the connect_to_game method to match the host's IP and port if they are not localhost:9999.
 
-Game Controls
+## Game Controls
 Hosting Player starts with the symbol X.
 Joining Player uses the symbol 0.
-To make a move, enter the desired row and column (e.g., 1,2).
-The game alternates turns, checking for a winner or tie after each move.
+Click on a cell to make a move, and the board will automatically update.
+The game alternates turns, and alerts appear when there’s a win, loss, or tie.
 
-Example Playthrough
+## Example Playthrough
 Host runs the script and waits for a client connection.
 Client connects to the host.
-Players take turns making moves by entering row,column coordinates.
+Players take turns making moves by selecting the cell they wish to take.
 Game results are displayed as soon as there's a winner or tie.
-Code Structure
-The TicTacToe class handles the game logic and networking. Key methods include:
 
+## GUI Styling 
+The GUI has been styled for a more enjoyable experience:
+
+- Button Colors: Each cell has a light beige color (#FFDDC1) that darkens slightly when clicked.
+- Turn Indicator Colors: Player X moves are highlighted with a red shade (#FF6347), and player 0 moves use a blue shade (#4682B4).
+- Font and Layout: The buttons use a bold Helvetica font (size 24) for readability, and are spaced apart for a clean look.
+
+## Code Structure:
+
+The TicTacToeGUI class handles the game logic, networking, and GUI. Key methods include:
 - host_game(): Hosts a new game and waits for a client.
 - connect_to_game(): Connects to an existing hosted game.
-- handle_connection(): Manages moves and game flow between the players.
-- apply_move(): Validates and applies a move to the board.
-- check_valid_move(): Checks if a selected cell is available.
-- check_if_won(): Checks if a player has won the game.
-- print_board(): Displays the current board state.
+- make_move(): Handles the player's move and sends it to the opponent.
+- receive_move(): Receives the opponent's move and updates the GUI.
+- check_winner(): Checks if a player has won or if the game is a tie.
+- display_winner(): Displays the game result (win, lose, or tie).
+- create_board(): Initializes the styled GUI with Tkinter.
