@@ -1,5 +1,5 @@
 
-# Multiplayer Tic-Tac-Toe Game with GUI
+# Multysocket connection bidding room in python
 
 This project is a multiplayer Tic-Tac-Toe game built with Python. It uses sockets for network communication and Tkinter for a graphical user interface (GUI), making it easy and fun to play in real-time with a friend.
 
