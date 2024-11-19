@@ -55,19 +55,19 @@ python Tclient.py
 ```
 When prompted, enter the server's IP address. Each client will connect to the server and start participating in the bidding process.
 
-### System Controls
+## System Controls
 
-## Server:
+#### Server:
 
 Tracks the bidding process, item availability, and announces winners.
 Automatically ends auctions for items with no remaining units.
 
-## Clients:
+#### Clients:
 
 Simulate bidding with randomized logic and predefined maximum prices.
 Receive updates and notifications from the server in real-time.
 
-## Example Playthrough
+### Example Playthrough
 
 Start the server by running Tserver.py on a machine.
 Start the clients by running Tclient.py on multiple machines.
@@ -75,10 +75,10 @@ Clients connect to the server and begin receiving auction updates.
 Clients place bids based on their logic until all items are sold out or the system is externally terminated.
 
 
-## Code Structure:
-# Server (Tserver.py):
+### Code Structure:
+#### Server (Tserver.py):
 
-# Core Classes:
+#### Core Classes:
 - Item: Represents an auction item with attributes for name, starting price, units, and highest bid tracking.
 - Key Functions:
 - handle_client(): Handles bid reception and broadcasts updates.
@@ -86,9 +86,9 @@ Clients place bids based on their logic until all items are sold out or the syst
 - manage_bidding(): Tracks deadlines and finalizes winning bids.
 - start_server(): Initializes and runs the server.
 
-# Client (Tclient.py):
+#### Client (Tclient.py):
 
-# Core Classes:
+#### Core Classes:
 - Client: Manages bidding logic and connection to the server.
 - Key Functions:
 - receive_messages(): Listens for updates from the server.
