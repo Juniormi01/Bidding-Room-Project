@@ -1,21 +1,31 @@
 
 # Multysocket connection bidding room in python
 
-This project is a multiplayer Tic-Tac-Toe game built with Python. It uses sockets for network communication and Tkinter for a graphical user interface (GUI), making it easy and fun to play in real-time with a friend.
+This project implements a distributed auto-bidding system consisting of a server and multiple clients. The server manages the auction process for various items, while clients participate by placing bids. The system ensures fair bidding, manages item availability, and tracks purchases.
 
 ## Features
 
-- **Multiplayer Support**: Play against a friend over a local network using TCP sockets.
-- **Graphical Interface**: Uses Tkinter to provide a user-friendly interface with styled buttons and visual cues.
-- **Styled Design**: Light and active colors make the game visually engaging and improve gameplay experience.
-- **Game Status Notifications**: Alerts players when there’s a win, loss, or tie.
+**Server:**
+
+- Manages auction items with starting prices and unit availability.
+- Tracks the highest bid for each item and broadcasts updates to clients.
+- Implements bidding deadlines to close auctions after a specified time.
+- Excludes the current highest bidder from rebidding until outbid.
+- Declares winners and records successful purchases.
+
+**Clients:**
+
+- Connect to the server to participate in bidding.
+- Randomly decide whether to bid (70% chance).
+- Place bids within a predefined maximum acceptable price for each item.
+- Stop bidding once the maximum acceptable price is reached.
+- Receive updates about ongoing auctions and winning results.
 
 
 ## Requirements
 
-- Python 3.x
-- Basic understanding of sockets and threading in Python
-- Tkinter (comes pre-installed with most Python distributions)
+- Programming Language: Python 3.x
+- Libraries: No external libraries required (uses standard Python libraries: socket, threading, time, random).
 
 ## Getting Started
 
@@ -26,48 +36,61 @@ This project is a multiplayer Tic-Tac-Toe game built with Python. It uses socket
 
 ### Usage
 
-To start a Tic-Tac-Toe game, decide which player will host the game and which will connect.
+To start the bidding system, decide which machine will host the server and which will run the clients.
 
-#### 1. Host the Game
+#### 1. Start the Server
 
-The hosting player runs:
-python Main.py
+Run the server script on the hosting machine:
 
+```
+python Tserver.py
+```
+This initializes the server and starts listening for client connections on localhost and port 12345 by default.
 
-This initializes the server on localhost and binds it to port 9999 by default. Once the client connects, the game will begin.
+### 2. Start the client
 
-### 2. Connect to a Game
-The joining player should run:
+Run the client script on each participating machine:
+```
+python Tclient.py
+```
+When prompted, enter the server's IP address. Each client will connect to the server and start participating in the bidding process.
 
-python Main2.py
-Update the connect_to_game method to match the host's IP and port if they are not localhost:9999.
+### System Controls
 
-## Game Controls
-Hosting Player starts with the symbol X.
-Joining Player uses the symbol 0.
-Click on a cell to make a move, and the board will automatically update.
-The game alternates turns, and alerts appear when there’s a win, loss, or tie.
+## Server:
+
+Tracks the bidding process, item availability, and announces winners.
+Automatically ends auctions for items with no remaining units.
+
+## Clients:
+
+Simulate bidding with randomized logic and predefined maximum prices.
+Receive updates and notifications from the server in real-time.
 
 ## Example Playthrough
-Host runs the script and waits for a client connection.
-Client connects to the host.
-Players take turns making moves by selecting the cell they wish to take.
-Game results are displayed as soon as there's a winner or tie.
 
-## GUI Styling 
-The GUI has been styled for a more enjoyable experience:
+Start the server by running Tserver.py on a machine.
+Start the clients by running Tclient.py on multiple machines.
+Clients connect to the server and begin receiving auction updates.
+Clients place bids based on their logic until all items are sold out or the system is externally terminated.
 
-- Button Colors: Each cell has a light beige color (#FFDDC1) that darkens slightly when clicked.
-- Turn Indicator Colors: Player X moves are highlighted with a red shade (#FF6347), and player 0 moves use a blue shade (#4682B4).
-- Font and Layout: The buttons use a bold Helvetica font (size 24) for readability, and are spaced apart for a clean look.
 
 ## Code Structure:
+# Server (Tserver.py):
 
-The TicTacToeGUI class handles the game logic, networking, and GUI. Key methods include:
-- host_game(): Hosts a new game and waits for a client.
-- connect_to_game(): Connects to an existing hosted game.
-- make_move(): Handles the player's move and sends it to the opponent.
-- receive_move(): Receives the opponent's move and updates the GUI.
-- check_winner(): Checks if a player has won or if the game is a tie.
-- display_winner(): Displays the game result (win, lose, or tie).
-- create_board(): Initializes the styled GUI with Tkinter.
+# Core Classes:
+- Item: Represents an auction item with attributes for name, starting price, units, and highest bid tracking.
+- Key Functions:
+- handle_client(): Handles bid reception and broadcasts updates.
+- broadcast(): Sends messages to all connected clients.
+- manage_bidding(): Tracks deadlines and finalizes winning bids.
+- start_server(): Initializes and runs the server.
+
+# Client (Tclient.py):
+
+# Core Classes:
+- Client: Manages bidding logic and connection to the server.
+- Key Functions:
+- receive_messages(): Listens for updates from the server.
+- start_bidding(): Automates client-side bidding behavior.
+- start_client(): Connects the client to the server and starts bidding.
